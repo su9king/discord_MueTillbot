@@ -97,12 +97,23 @@ async def vote(ctx,vote):
 async def check(ctx):
 
     global vote_time,list,vote_chest
+    
+    selected = list[0]
 
     for i in range(0,len(list)):
+        
+        if vote_chest[i] > vote_chest[i + 1]:
+            selected = list[i]
 
-        await ctx.send(f"{list[0]} 의 득표수 : {vote_chest[0]} ")
-        del list[0]
-        del vote_chest[0]
+        elif vote_chest[i+1] > vote_chest[i] :
+            selected = list[i+1]
+
+    print(selected)
+    
+    await ctx.send(f"{selected}이 결정 되었습니다!")
+#         await ctx.send(f"{list[0]} 의 득표수 : {vote_chest[0]} ")
+#         del list[0]
+#         del vote_chest[0]
 
     vote_time = False
 
